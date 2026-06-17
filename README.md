@@ -1,62 +1,129 @@
-How to Run the Project:
-1. First run the loadClothingStore page to create or update the database: http://localhost/pastimes3/loadClothingStore.php
-2. enter this url: http://localhost/pastimes3/index.php
+# Pastimes — Second-Hand Branded Clothing E-Store
+
+**Module:** WEDE6021POE — Part 3  
+**Group:** Group 4  
+**Students:** Emihle Zifo (ST10452317) | Mzukisi Tekeni (ST10345918)  
+**GitHub:** https://github.com/RC-WEDE6021-PART-2-AND-PART-3/rc-pta-wede6021-part2-and-3-wede6021-group-4
+
+---
+
+## What is Pastimes?
+
+Pastimes is a South African second-hand branded clothing e-store built with PHP, MySQL, HTML, CSS, and JavaScript. It supports four user roles: Guest, Buyer, Seller, and Admin — each with different access and features.
+
+---
+
+## Requirements
+
+- XAMPP (Apache + MySQL)
+- PHP 8
+- A web browser (Chrome or Firefox recommended)
+
+---
 
 
-Project Overview:
-Pastimes - Second-Hand Fashion Marketplace
-Pastimes is a South African second-hand clothing marketplace built with PHP and CSS. The platform connects buyers and sellers of pre-loved fashion, promoting sustainable shopping while making quality clothing affordable and accessible.
+### Open the Website
+Go to:
+```
+http://localhost/pastimes3/loadClothingStore.php to update or create the database
+```
+then go to:
 
-Core Functionality
-Buy Second-Hand Fashion - Browse thousands of pre-loved clothing items across multiple categories including Women, Men, Kids, Shoes, Vintage, and Accessories
+```
+http://localhost/pastimes3/index.php
+```
 
-Sell Your Clothes - List items with photos, descriptions, pricing, and shipping details. Earn money while extending the lifecycle of garments
+---
 
-Secure Transactions - Escrow payment system holds funds until buyers confirm receipt, with buyer protection and verified sellers
+## Login Details
 
-Sustainable Fashion - Reduce environmental impact by extending garment life, reducing landfill waste, and saving up to 80% off retail prices
+### Admin
+| Field | Value |
+|-------|-------|
+| URL | http://localhost/pastimes3/Admin/login.php |
+| Email | admin@pastimes.co.za |
+| Password | Admin@1234 |
 
-Core Functionality
-Buy Second-Hand Fashion - Browse thousands of pre-loved clothing items across multiple categories including Women, Men, Kids, Shoes, Vintage, and Accessories
+### Buyer
+| Field | Value |
+|-------|-------|
+| URL | http://localhost/pastimes3/login.php |
+| Username | lindo |
+| Password | password |
 
-Sell Your Clothes - List items with photos, descriptions, pricing, and shipping details. Earn money while extending the lifecycle of garments
+### Seller
+| Field | Value |
+|-------|-------|
+| URL | http://localhost/pastimes3/login.php |
+| Username | testseller |
+| Password | Seller@1234 |
 
-Secure Transactions - Escrow payment system holds funds until buyers confirm receipt, with buyer protection and verified sellers
+> You can also register a new account at `http://localhost/pastimes3/register.php`
 
-Sustainable Fashion - Reduce environmental impact by extending garment life, reducing landfill waste, and saving up to 80% off retail prices
+---
 
-Key Features
-For Buyers:
+## Database Structure
 
-Browse items by category, brand, size, price, and condition
+Database name: `pastimes_db`
 
-View detailed product information including condition ratings and seller reviews
+| Table | Purpose |
+|-------|---------|
+| tblUser | All user accounts (buyers, sellers, admin) |
+| tblClothes | All clothing listings |
+| tblOrder | All purchase orders |
+| tblMessage | Admin communications and broadcasts |
 
-Add items to cart and checkout securely
+---
 
-Track orders and leave seller ratings
+## Folder Structure
 
-Save items to wishlist
+```
+pastimes3/
+├── index.php           — Homepage with stats, categories, product grid
+├── category.php        — Browse by category
+├── sale.php            — Sale items page
+├── about.php           — About page
+├── register.php        — User registration
+├── login.php           — User login
+├── logout.php          — Logout
+├── cart.php            — Shopping cart and checkout
+├── history.php         — Purchase history report
+├── sell.php            — Seller item listing form
+├── setup.php           — Database setup (run once)
+├── DBConn.php          — Database connection
+├── loadClothingStore.php — Sample data seeder
+├── Admin/
+│   ├── login.php       — Admin login
+│   ├── dashboard.php   — Admin dashboard
+│   ├── sellers.php     — Seller verification
+│   ├── listings.php    — Manage clothing listings
+│   ├── orders.php      — Manage orders and delivery status
+│   ├── comms.php       — Communications and broadcasts
+│   └── users.php       — User management
+├── includes/
+│   ├── header.php      — Site header and navigation
+│   └── footer.php      — Site footer
+├── css/
+│   └── style.css       — Main stylesheet
+├── js/
+│   └── script.js       — Dropdown, cart popup, image preview
+├── images/             — Category banners and site icons
+└── uploads/            — Product photos (requires write permissions)
+```
 
-For Sellers:
+---
 
-List items with up to 5 photos
+## Key Features
 
-Set prices and choose shipping methods (Pargo, Courier Guy, PostNet)
-
-Earn 8% commission on sales (no upfront fees)
-
-Receive payments to wallet within 3 business days of buyer confirmation
-
-Platform Features:
-
-Verified seller system with ratings and reviews
-
-Secure payments via Visa, MasterCard, EFT, and SnapScan
-
-Delivery within 2-4 business days across all 9 South African provinces
-
-Eco-friendly packaging options
-
-
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/OFWe9D1G)
+- Role-based access for Guest, Buyer, Seller, and Admin
+- Shopping cart stored in PHP session
+- Checkout displays Order Number and Session Reference
+- Purchase history report with totals (printable)
+- Seller item listing with photo upload and live preview
+- Admin can add, edit, and delete users and clothing listings
+- Admin can verify, reject, or suspend seller accounts
+- Admin can send direct messages or broadcasts to users
+- Passwords stored as bcrypt hashes — never plain text
+- All database queries use prepared statements to prevent SQL injection
+- Paginated product grid (6 items per page)
+- Image lazy loading with fallback placeholder
